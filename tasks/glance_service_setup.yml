@@ -17,7 +17,8 @@
 - name: Ensure glance service
   keystone:
     command: "ensure_service"
-    endpoint: "{{ keystone_service_adminurl }}"
+    endpoint: "http://{{ hostvars[groups['keystone'][0]].ansible_host }}:{{ keystone_admin_port }}/v3"
+    ignore_catalog: true
     login_user: "{{ keystone_admin_user_name }}"
     login_password: "{{ keystone_auth_admin_password }}"
     login_project_name: "{{ keystone_admin_tenant_name }}"
@@ -34,7 +35,8 @@
 - name: Ensure glance user
   keystone:
     command: "ensure_user"
-    endpoint: "{{ keystone_service_adminurl }}"
+    endpoint: "http://{{ hostvars[groups['keystone'][0]].ansible_host }}:{{ keystone_admin_port }}/v3"
+    ignore_catalog: true
     login_user: "{{ keystone_admin_user_name }}"
     login_password: "{{ keystone_auth_admin_password }}"
     login_project_name: "{{ keystone_admin_tenant_name }}"
@@ -52,7 +54,8 @@
 - name: Ensure glance user to admin role
   keystone:
     command: "ensure_user_role"
-    endpoint: "{{ keystone_service_adminurl }}"
+    endpoint: "http://{{ hostvars[groups['keystone'][0]].ansible_host }}:{{ keystone_admin_port }}/v3"
+    ignore_catalog: true
     login_user: "{{ keystone_admin_user_name }}"
     login_password: "{{ keystone_auth_admin_password }}"
     login_project_name: "{{ keystone_admin_tenant_name }}"
@@ -70,7 +73,8 @@
 - name: Ensure glance endpoint
   keystone:
     command: "ensure_endpoint"
-    endpoint: "{{ keystone_service_adminurl }}"
+    endpoint: "http://{{ hostvars[groups['keystone'][0]].ansible_host }}:{{ keystone_admin_port }}/v3"
+    ignore_catalog: true
     login_user: "{{ keystone_admin_user_name }}"
     login_password: "{{ keystone_auth_admin_password }}"
     login_project_name: "{{ keystone_admin_tenant_name }}"
